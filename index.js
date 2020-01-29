@@ -84,19 +84,18 @@ class Car {
   }
   fill(gallons){
     this.tank += gallons 
-    return this.tank
   }
   drive(d){
-      let fuelUsed = d / this.milesPerGallon
-      this.tank -= fuelUsed
-      this.odometer += d
-      if (this.tank !== 0 ){
-        return this.tank ,this.odometer
-      }else{
-        return `I ran out of fuel at ${this.odometer} miles`;
-      }
-}
-}
+    if( d/this.milesPerGallon > this.tank){
+      this.odometer += this.milesPerGallon * this.tank
+      this.tank = 0
+      return `I ran out of fuel at ${this.odometer} miles!`
+    }else{
+      this.odometer += d 
+      this.tank -= d / this.milesPerGallon
+    }
+    
+}}
 
 /*
   TASK 3
